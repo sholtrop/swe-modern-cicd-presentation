@@ -1321,10 +1321,10 @@
           The 'classic' way of doing things
         </div>
         <div class="fragment text-2xl pt-6">
-          Template HTML files have their own syntax. Server fills in
+          HTML template languages have their own syntax. Server fills in
           variables:
         </div>
-        <pre class="absolute fragment" style="top: 0rem; width: 31rem">
+        <pre class="absolute fragment" style="top: 4rem; width: 31rem">
           <code
             class="hljs vue text-lg absolute bottom-0 left-0 w-full ml-2"
             data-trim
@@ -1335,7 +1335,7 @@
             </script>
           </code>
           </pre>
-        <div class="fragment text-2xl pt-2">
+        <div class="fragment text-2xl pt-20">
           Then, in the server code (e.g. Python + Flask):
         </div>
         <pre class="absolute fragment" style="top: 0rem; width: 44rem">
@@ -1361,10 +1361,10 @@
           <li class="fragment">Frontend and backend codebases are coupled</li>
           <li class="fragment">
             Updating a page with new data requires roundtrip to server (= full
-            page refresh)
+            page refresh). This is why Brightspace feels so slow :)
           </li>
           <li class="fragment">
-            If you make a different app with the same data, your choices are:<br />
+            If you make a different app needing the same data, your choices are:<br />
             1) Write a new backend<br />
             2) Parse the data from the HTML
           </li>
@@ -1475,7 +1475,8 @@
         <h2>Server-side code</h2>
         <div class="text-3xl text-orange-600">Dynamic website (API)</div>
         <div class="fragment text-2xl pt-6">
-          Frontend routes return HTML/CSS/JS. Backend routes return data.
+          Frontend routes return HTML/CSS/JS. Backend routes return data <br /><span class="text-gray-600">(often in
+            JSON format)</span>
         </div>
         <div class="fragment text-2xl pt-6">
           They could even be separate servers
@@ -1504,15 +1505,16 @@
       <section>
         <h2>Server-side code</h2>
         <p class="text-orange-600 pb-10 text-3xl">
-          Disadvantages of API backends
+          Disadvantages of decoupled backends
         </p>
 
-        <div class="text-2xl fragment mt-10">
+        <div class="text-2xl fragment mt-4">
           More complicated logic on the frontend
         </div>
 
-        <div class="text-2xl fragment mt-10">Does not work without JS</div>
+        <div class="text-2xl fragment mt-4">Does not work without JS</div>
 
+        <div class="text-2xl fragment mt-4">(Which means this will also not work:)</div>
         <img src="./assets/ogtags.png" class="fragment mt-10" style="margin-left: auto; margin-right: auto" />
 
         <div class="text-xl text-gray-500 fragment">
@@ -1660,7 +1662,7 @@
               </script>
               </code>
             </pre>
-          <div class="fragment text-3xl mt-10">
+          <div class="fragment text-3xl mt-20">
             This is only available in
             <code class="hljs-keyword">async</code> functions!
             <pre class="absolute" style="left: -6rem; top: 0rem; width: 31rem">
@@ -1703,7 +1705,7 @@
               </script>
               </code>
             </pre>
-          <p class="text-2xl fragment pt-10">
+          <p class="text-2xl fragment pt-20">
             An <code class="hljs-keyword">async</code> function automatically
             returns a
             <code class="hljs-built_in">Promise</code>
@@ -1758,7 +1760,7 @@
             </script>
             </code>
           </pre>
-        <div class="text-3xl fragment flex flex-col items-center">
+        <div class="text-3xl mt-20 fragment flex flex-col items-center">
           <div>This happens:</div>
           <img src="assets/promise.png" class="scale-150 transform" style="left: 24rem" />
         </div>
@@ -1791,7 +1793,7 @@
           <li class="fragment text-2xl">
             Lots of boilerplate and security pitfalls (XSS)
           </li>
-          <li class="fragment text-2xl">Hard to avoid duplicate code</li>
+          <li class="fragment text-2xl">Hard to avoid duplicating code</li>
         </ul>
         <p class="text-3xl fragment">
           <span class="text-orange-600">Component</span> frameworks have
@@ -1833,7 +1835,7 @@
         <p class="text-3xl text-left">
           Our app is currently split into files like this:
         </p>
-        <div class="fragment w-1/3 h-40 flex text-white">
+        <div class="w-1/3 h-40 flex text-white relative">
           <div class="h-full bg-teal-800 w-1/3 flex items-center justify-center">
             HTML
           </div>
@@ -1843,6 +1845,7 @@
           <div class="h-full bg-orange-700 w-1/3 flex items-center justify-center">
             JS
           </div>
+          <div class="absolute top-0 text-lg mx-auto w-full font-bold tracking-widest">Application</div>
         </div>
         <div class="fragment text-3xl text-left mt-3">
           With a component framework, this becomes:
@@ -1891,7 +1894,8 @@
         <p class="text-3xl fragment">
           1. Developers can simply
           <span class="text-orange-600">declare</span> what their UI looks
-          like. <br />No "ugly" DOM manipulation.
+          like. <br />No "ugly" DOM manipulation <span class="text-lg">(i.e. no <span
+              class="hljs-built_in">document.querySelector</span>)</span>
         </p>
         <p class="text-3xl fragment pt-8">
           2. Your UI consists of reusable
@@ -1948,7 +1952,7 @@
               data-line-numbers="1-3|2|5-10|7-9"
             >
             <script type="text/template">
-                <sсript lang="ts">
+                <sсript>
                   import Counter from "./Counter.svelte";
                 </sсript>
 
@@ -1984,12 +1988,16 @@
         <h2>Adding a buildstep</h2>
         <p class="text-orange-600 text-3xl">Using frameworks & tools</p>
         <div class="w-3/4 mx-auto flex flex-col items-center space-y-6 text-xl">
-          <p class="fragment">Component frameworks are often available as just JS libraries</p>
+          <p class="fragment">Component frameworks are often available as simple JavaScript libraries. You can simply
+            download and use them <span class="text-base">(e.g. via a script-tag with src="link/to/library")</span>
+          </p>
           <p class="fragment">However, nowadays, it is common to have compilers/transpilers/bundlers that allow for
             easier syntax/complex features</p>
-          <p class="fragment">This means you write your website in an easier way than raw HTML/CSS/JS, and then compile
-            it to HTML/CSS/JS. This is a <span class="text-orange-600">buildstep</span>.</p>
-          <p class="fragment">You mostly use <span class="text-orange-600">NodeJS</span> for this, which runs JS outside
+          <p class="fragment">This means you write your website in an easier way than raw HTML/CSS/JS, and then use
+            tools that transform
+            it into HTML/CSS/JS. This is a <span class="text-orange-600">build step</span>.</p>
+          <p class="fragment">These tools are mostly written for <span class="text-orange-600">NodeJS</span>, which runs
+            JS outside
             the browser</p>
         </div>
       </section>
@@ -2066,7 +2074,7 @@
               </script>
               </code>
             </pre>
-          <pre class="absolute fragment" style="right: -18rem; top: -4.5rem; width: 31rem">
+          <pre class="absolute fragment" style="right: -18rem; top: 0rem; width: 31rem">
               <code
                 class="hljs ts text-lg absolute top-0"
                 style="width: 31rem"
@@ -2410,13 +2418,13 @@
         arrowSvg3.classList.add("rotate-180");
         account2Req.classList.add("hidden");
         reqResText3.innerText = "HTTP Response";
-        serverText3.innerText = "Sends 'empty' account.html back";
+        serverText3.innerText = "Sends 'skeleton' account.html back";
         account2Res.classList.remove("hidden");
         account2Res.style = "transform: translateX(38rem)";
       } else if (indexf === 5) {
         account2Res.style = "display: hidden;";
         accountPage.classList.add("invisible");
-        serverText3.innerText = "Sends 'empty' account.html back";
+        serverText3.innerText = "Sends 'skeleton' account.html back";
         account2Res.classList.remove("hidden");
         reqArrow3.classList.remove("invisible");
         accountHtmlLoad.classList.add("hidden");
@@ -2430,11 +2438,11 @@
         accountHtmlData.classList.add("hidden");
         accountHtmlLoad.classList.remove("hidden");
         arrowSvg3.classList.add("invisible");
-        reqResText3.innerHTML = "User sees skeleton page<br/>with shimmers";
+        reqResText3.innerHTML = "User sees skeleton page<br/>with some loading effect";
 
         httpArrow4.classList.add("invisible");
       } else if (indexf === 7) {
-        reqResText3.innerHTML = "Fetch data via JavaScript,<br/> fill it in.";
+        reqResText3.innerHTML = "Page fetches data via<br/> JavaScript (fetch) fills it in.";
         httpArrow4.classList.remove("invisible");
         httpArrow4.style = "left: -5rem; bottom: -12rem";
         arrowSvg4.classList.remove("rotate-180");
@@ -2456,7 +2464,7 @@
         arrowSvg3.classList.add("rotate-180");
         httpArrow4.style = "left: -5rem; bottom: -12rem;";
         reqResText3.innerHTML =
-          "Request completed,<br/> page filled in via JS";
+          "Request completed,<br/> page filled in via JavaScript";
         accountHtmlLoad.classList.remove("hidden");
         accountHtmlData.classList.add("hidden");
       } else if (indexf === 11) {
