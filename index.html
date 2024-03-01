@@ -1,0 +1,2500 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>Modern Web Development</title>
+
+  <link rel="stylesheet" href="dist/reset.css" />
+  <link rel="stylesheet" href="dist/reveal.css" />
+  <link rel="stylesheet" href="dist/theme/night.css" id="theme" />
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme" />
+  <style>
+    .header {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      font-size: larger;
+      color: whitesmoke;
+    }
+
+    .header::before {
+      content: "by Sjors Holtrop";
+    }
+
+    pre.css-selector-example {
+      display: none !important;
+    }
+
+    pre.css-selector-example.current {
+      display: block !important;
+    }
+
+    @keyframes attention {
+      from {
+        transform: scale(2);
+      }
+
+      to {
+        transform: scale(1);
+      }
+    }
+
+    .attention {
+      animation: attention;
+      animation-duration: 1.3s;
+    }
+  </style>
+</head>
+
+<body>
+  <h2 class="header"></h2>
+  <div class="reveal">
+    <div class="slides border-t-4 border-orange-600">
+      <section>
+        <div class="flex flex-col items-center">
+          <h2>
+            Introduction to <span class="text-orange-600">modern</span> web
+            development
+          </h2>
+        </div>
+      </section>
+
+      <section>
+        <h2>Two parts</h2>
+        <div class="flex justify-between">
+          <div class="fragment flex flex-col">
+            <span class="text-orange-600">Basics</span>
+            <ul class="text-3xl pt-8 space-y-4">
+              <li class="fragment fade-left">HTML, CSS, JavaScript</li>
+              <li class="fragment fade-left">Event driven programming</li>
+              <li class="fragment fade-left">Browser APIs</li>
+            </ul>
+          </div>
+
+          <div class="fragment flex flex-col">
+            <span class="text-orange-600">Advanced</span>
+            <ul class="text-3xl pt-8 space-y-4">
+              <li class="fragment fade-left">Servers and server-side code</li>
+              <li class="fragment fade-left">Asynchronous JavaScript</li>
+              <li class="fragment fade-left">Component frameworks</li>
+              <li class="fragment fade-left">
+                Buildstep: Using tools/frameworks
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Why learn web dev?</h2>
+        <div class="text-3xl fragment">
+          Web frontend is the most popular set of UI languages
+        </div>
+        <div class="mt-16 text-3xl fragment">
+          Other than browsers, they can run on desktop via e.g.
+          <span class="text-orange-600">Electron</span> which bundles the
+          Chromium engine
+        </div>
+        <div class="mt-16 text-3xl fragment">
+          <div>These programs all use Electron for the UI:</div>
+          <div class="flex space-x-12 ml-10">
+            <div class="flex items-center space-x-3">
+              <img src="./assets/discord.png" class="w-16" />
+              <div>Discord</div>
+            </div>
+            <div class="flex items-center">
+              <img src="./assets/msteams.png" class="w-20" />
+              <div class="-ml-2 leading-5">Microsoft Teams <span class="text-sm">(classic)</span></div>
+            </div>
+            <div class="flex items-center space-x-3">
+              <img src="./assets/vscode.png" class="w-12" />
+              <div>Visual Studio Code</div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-12 text-3xl fragment text-orange-600">
+          When making a UI, web tech is hard to avoid!
+        </div>
+      </section>
+
+      <section>
+        <h2>HTML/CSS/JS</h2>
+        <p class="text-orange-600 pb-10 text-3xl">
+          The three languages of the web
+        </p>
+        <p class="text-2xl pt-6 fragment w-2/3" style="margin-left: auto; margin-right: auto;"><span
+            class="text-orange-600">HTML</span> is a markup language, and the skeleton of your app</p>
+        <p class="text-2xl pt-6 fragment w-2/3" style="margin-left: auto; margin-right: auto;"><span
+            class="text-orange-600">CSS</span> is a styling language, used to change the way your HTML looks</p>
+        <p class="text-2xl pt-6 fragment w-2/3" style="margin-left: auto; margin-right: auto;"><span
+            class="text-orange-600">JavaScript</span> is a programming language, used to dynamically update/change the
+          page's contents and/or make it interactive</p>
+      </section>
+      <section>
+        <h2>HTML</h2>
+        <p class="text-orange-600 pb-10 text-3xl">
+          Hyper Text Markup Language
+        </p>
+        Common HTML tags
+        <pre>
+            <code
+              class="hljs html absolute top-0 left-0 w-full h-64"
+              data-trim
+              
+              data-line-numbers="1|3-5|7|9|11-14|16"
+            >
+              <script type="text/template">
+                <h1>Header tag</h1>
+
+                <button>
+                  <span>Click me!<span>
+                </button>
+
+                <p>Paragraph with <em>emphasized</em> text</p>
+
+                <a href="google.com">Anchor tag which is a link</a>
+
+                <div>
+                  Div has no meaning on its own and is purely for grouping
+                  or applying styles
+                </div>
+
+                <!-- Comments go like this -->
+              </script>
+            </code>
+          </pre>
+        <div class="code-comment0 code-comment text-3xl text-white absolute text-left" style="top: 35rem; left: 4rem">
+        </div>
+      </section>
+
+      <section>
+        <h2>HTML</h2>
+        <p class="text-orange-600 pb-10 text-3xl">
+          Hyper Text Markup Language
+        </p>
+        Attributes
+        <pre>
+            <code
+              class="hljs html absolute top-0 left-0 w-full"
+              data-trim
+              data-line-numbers="1|3|5"
+            >
+              <script type="text/template">
+                <a href="google.com">Anchor tag which is a link</a>
+
+                <button disabled>Not clickable</button>
+
+                <input type="text" spellcheck="false" />
+              </script>
+            </code>
+          </pre>
+        <div class="code-comment1 code-comment text-2xl text-white absolute text-left" style="top: 28rem; left: 4rem">
+        </div>
+      </section>
+
+      <section>
+        <h2>HTML</h2>
+        <p class="text-orange-600 pb-10 text-3xl">
+          Hyper Text Markup Language
+        </p>
+        <div class="flex">
+          <p class="text-2xl text-left w-1/2">
+            HTML is a text format that gets rendered by the browser. Each
+            browser has its own default styling.
+          </p>
+        </div>
+        <div class="flex justify-start items-start">
+          <pre class="w-1/3">
+            <code
+              class="hljs html absolute top-0 left-0 text-xl w-1/3"
+              data-trim
+            >
+              <script type="text/template">
+                <html>
+                  <input type="text" />
+                  <button disabled>
+                    Submit
+                  </button>
+                </html>
+              </script>
+            </code>
+          </pre>
+          <div class="absolute text-xl" style="left: 30rem; top: 28rem">
+            becomes
+          </div>
+        </div>
+        <img src="./assets/html.png" class="absolute" style="left: 40rem; top: 26rem" />
+      </section>
+
+      <section>
+        <h2>HTML</h2>
+        <p class="text-orange-600 text-3xl">Hyper Text Markup Language</p>
+        <p class="text-xl">
+          HTML forms a tree structure with each tag a node
+        </p>
+        <pre class="w-1/2 text-lg">
+            <code
+              class="hljs html absolute top-0 left-0 text-xl w-1/2"
+              data-trim
+            >
+              <script type="text/template">
+                <html lang="en">
+                  <body>
+                    <p>
+                      Some text
+                    </p>
+                    <ul>
+                      <li>Unordered list</li>
+                      <li>
+                        <input />
+                      </li>
+                    </ul>
+                    <footer>End of page</footer>
+                  </body>
+                </html>
+              </script>
+            </code>
+          </pre>
+        <img src="./assets/tree.png" class="absolute transform scale-150" style="top: 16rem; right: 2rem; width: 35%" />
+      </section>
+
+      <section>
+        <h3>Our website so far</h3>
+        <div class="ml-12 w-full absolute pt-2" style="min-height: 70vh">
+          <iframe src="testsite/0.html" class="w-11/12 absolute" style="min-height: 70vh; left: -13rem">
+          </iframe>
+          <pre class="w-full absolute" style="top: 0rem; right: -40rem">
+              <code
+                class="hljs html absolute top-0 left-0 text-lg w-full"
+                data-trim
+                data-line-numbers="1,9|2,8|3-7"
+              >
+                <script type="text/template">
+                  <html lang="en">
+                    <body>
+                      Username:
+                      <input type="text" />
+                      Password:
+                      <input type="password" />
+                      <button>Log in</button>
+                    </body>
+                  </html>
+                </script>
+              </code>
+            </pre>
+        </div>
+      </section>
+
+      <section>
+        <h2>CSS</h2>
+        <p class="text-orange-600 pb-10 text-3xl">Cascading Style Sheets</p>
+        <p class="text-2xl">You style HTML elements using CSS</p>
+        <div class="flex justify-between">
+          <img src="./assets/html.png" class="h-full" />
+          <div class="w-full fragment fade-up">
+            <pre>
+              <code
+                class="hljs css text-lg absolute top-0 left-0 w-full"
+                data-trim
+                data-line-numbers="1,12|2,8|2-7|8-10|"
+              >
+                <script type="text/template">
+                  <style>
+                    input {
+                      padding: 10px;
+                      border-width: 2px;
+                      border-color: black;
+                      border-radius: 0.5rem;
+                    }
+                    button {
+                      padding: 10px;
+                      background-color: blue;
+                    }
+                  </style>
+                </script>
+              </code>
+            </pre>
+          </div>
+          <img src="./assets/css.png" class="h-full fragment fade-up" />
+          <div class="absolute left-0 text-lg code-comment2 code-comment w-48 text-left leading-relaxed"
+            style="top: 26rem"></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>CSS</h2>
+        <p class="text-orange-600 pb-10 text-3xl">Cascading Style Sheets</p>
+        <p class="text-2xl">Common CSS selectors</p>
+        <div class="flex w-full">
+          <div class="flex flex-col w-full">
+            <span class="text-3xl italic">CSS</span>
+            <pre>
+            <code
+              class="hljs css text-lg absolute top-0 left-0 w-full mr-2 h-64"
+              data-trim
+              data-line-numbers="2-4|5-7|8-10|11-13|14-16|17-21|22-24"
+            >
+              <script type="text/template">
+                <style>
+                  button {
+                    /* ... rules */
+                  }
+                  .main-text {
+                    /* ... rules */
+                  }
+                  .selected.available {
+                    /* ... rules */
+                  }
+                  #banner {
+                    /* ... rules */
+                  }
+                  input[type="password"] {
+                    /* ... rules */
+                  }
+                  button:focus,
+                  button:hover,
+                  button:not(".inactive") {
+                    /* ... rules */
+                  }
+                  ul li {
+                    /* ... rules */
+                  }
+                </style>
+              </script>
+            </code>
+          </pre>
+          </div>
+          <div class="flex flex-col w-full">
+            <span class="text-3xl italic">HTML</span>
+            <pre class="css-selector-example">
+            <code
+              class="hljs html text-lg absolute top-0 left-0 w-full ml-2"
+              data-trim
+            >
+              <script type="text/template">
+                <button>
+                  Click me!
+                </button>
+              </script>
+            </code>
+            </pre>
+
+            <pre class="css-selector-example">
+              <code
+                class="hljs html text-lg absolute top-0 left-0 w-full ml-2"
+                data-trim
+              >
+                <script type="text/template">
+                  <p class="main-text">
+                    Our website is about...
+                  </p>
+                </script>
+              </code>
+              </pre>
+
+            <pre class="css-selector-example">
+                <code
+                  class="hljs html text-lg absolute top-0 left-0 w-full ml-2"
+                  data-trim
+                >
+                  <script type="text/template">
+                    <option class="selected available">
+                      Large milkshake
+                    </option>
+                  </script>
+                </code>
+            </pre>
+
+            <pre class="css-selector-example">
+              <code
+                class="hljs html text-lg absolute top-0 left-0 w-full ml-2"
+                data-trim
+              >
+                <script type="text/template">
+                  <header id="banner">
+                    BUY OUR PRODUCTS
+                  </header>
+                </script>
+              </code>
+            </pre>
+
+            <pre class="css-selector-example">
+              <code
+                class="hljs html text-lg absolute top-0 left-0 w-full ml-2"
+                data-trim
+              >
+                <script type="text/template">
+                  <input type="password" />
+                </script>
+              </code>
+            </pre>
+
+            <pre class="css-selector-example">
+              <code
+                class="hljs html text-lg absolute top-0 left-0 w-full ml-2"
+                data-trim
+              >
+                <script type="text/template">
+                  <button>
+                    I am selected if focused, hovered,     
+                    or not inactive
+                  </button>
+                </script>
+              </code>
+            </pre>
+
+            <pre class="css-selector-example">
+              <code
+                class="hljs html text-lg absolute top-0 left-0 w-full ml-2"
+                data-trim
+              >
+                <script type="text/template">
+                  <ul>
+                    <li>Unordered list item (SELECTED)</li>
+                  </ul>
+                  <ol>
+                    <li>Ordered list item (NOT SELECTED)</li>
+                  </ol>
+                </script>
+              </code>
+            </pre>
+            <div class="absolute right-0 text-lg text-left code-comment3 code-comment"
+              style="top: 33rem; width: 28rem" />
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>CSS</h2>
+        <p class="text-orange-600 pb-10 text-3xl">Cascading Style Sheets</p>
+        <p class="text-3xl">Further CSS resources</p>
+        <ul class="text-2xl space-y-4">
+          <li class="fragment">
+            <a class="text-2xl text-left" href="https://developer.mozilla.org/en-US/docs/Learn/CSS">
+              Mozilla Developer Network CSS tutorial
+            </a>
+            - Complete tutorial <br /><span class="text-xl italic">MDN also has an overview of common rules</span>
+          </li>
+          <li class="fragment">
+            <a href="https://flexboxfroggy.com/" class="text-2xl text-left">
+              Flexbox Froggy
+            </a>
+            - For the positioning/layout system 'flexbox'<br />
+            If you're going to learn one thing, learn flexbox!
+          </li>
+          <li class="fragment">
+            <a href="https://web.dev/learn/css/" class="text-2xl text-left">Web.dev CSS tutorial</a>
+            - Complete tutorial with illustrative examples
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Our website so far</h3>
+        <div class="ml-12 w-11/12 absolute pt-2" style="min-height: 70vh">
+          <iframe src="testsite/1.html" class="w-11/12 absolute" style="min-height: 70vh; left: -13rem">
+          </iframe>
+          <pre class="w-2/3 h-20 absolute z-10" style="top: 0rem; right: -33rem">
+              <code
+                class="hljs html absolute top-0 left-0 text-base w-2/3"
+                data-trim
+                data-line-numbers="2-12|3,11|8|14-39|15-20|38-40"
+              >
+                <script type="text/template">
+                  <html lang="en">
+                    <body>
+                      <div class="container">
+                        Username:
+                        <input type="text" />
+                        Password:
+                        <input type="password" />
+                        <button id="submit-btn">
+                          Log in
+                        </button>
+                      </div>
+                    </body>
+                  
+                    <style>
+                      .container {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                      }
+                      input {
+                        width: 10rem;
+                        padding: 6px;
+                        margin: 2px;
+                        border-width: 1px;
+                        border-radius: 0.5rem;
+                        border-color: gray;
+                      }
+                      #submit-btn {
+                        margin-top: 1rem;
+                        width: 6rem;
+                        border-radius: 0.5rem;
+                        padding: 0.5rem;
+                        font-weight: bold;
+                        color: white;
+                        background-color: blue;
+                      }
+                      #submit-btn:hover {
+                        background-color: rgb(81, 81, 238);
+                      }
+                    </style>
+                  </html>
+                </script>
+              </code>
+            </pre>
+        </div>
+      </section>
+
+      <section>
+        <h2>JavaScript <span class="text-2xl tracking-wider">(JS)</span></h2>
+        <p class="text-orange-600 pb-10 text-3xl">for interactivity</p>
+        <p class="text-4xl">Key concepts:</p>
+        <ul class="text-2xl space-y-4">
+          <li class="fragment fade-left">
+            High-level, dynamically typed, single-threaded.
+          </li>
+          <li class="fragment fade-left">
+            Garbage collected (no manual memory management).
+          </li>
+          <li class="fragment fade-left">
+            Browsers have a JavaScript interpreter to run JS
+            <em>client-side</em>.
+          </li>
+          <li class="fragment fade-left">
+            <span class="text-orange-600">NodeJS</span> is an interpreter to
+            run JS <em>server-side</em>. More on this later.
+          </li>
+          <li class="fragment fade-left">Has nothing to do with Java.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>JavaScript <span class="text-2xl tracking-wider">(JS)</span></h2>
+        <p class="text-orange-600 pb-10 text-3xl">for interactivity</p>
+        <p class="text-xl">Basic syntax</p>
+        <pre class="w-full">
+            <code
+              class="hljs js text-lg absolute top-0 left-0 w-full ml-2"
+              data-trim
+              data-line-numbers="1|2|3|2-3|5|6"
+            >
+              <script type="text/template">
+               var x = "hello";
+               let y = 0;
+               const z = ['an', 'array'];
+
+               z[0] = 'something else';
+               z = 'a different thing';
+              </script>
+            </code>
+          </pre>
+        <div class="code-comment4 code-comment absolute text-white text-2xl"
+          style="right: 4rem; top: 16.5rem; width: 28rem" />
+      </section>
+
+      <section>
+        <h2>JavaScript <span class="text-2xl tracking-wider">(JS)</span></h2>
+        <p class="text-orange-600 pb-10 text-3xl">for interactivity</p>
+        <p class="text-xl">Basic types</p>
+        <pre class="w-full">
+            <code
+              class="hljs js text-lg absolute top-0 left-0 w-full ml-2"
+              data-trim
+              data-line-numbers="1|1|2|3|4|5|1-5"
+            >
+              <script type="text/template">
+                  a = 0;         // number
+                  b = "hello";   // string
+                  c = false;     // boolean
+                  d = null;      // No value (intentionally)
+                  e = undefined; // No value (unintentionally)
+              </script>
+            </code>
+          </pre>
+        <div class="code-comment5 code-comment absolute text-white text-2xl"
+          style="right: 4rem; top: 16.5rem; width: 28rem" />
+      </section>
+
+      <section>
+        <h2>JavaScript <span class="text-2xl tracking-wider">(JS)</span></h2>
+        <p class="text-orange-600 pb-10 text-3xl">for interactivity</p>
+        <p class="text-xl">Basic types</p>
+        <pre class="w-full">
+            <code
+              class="hljs js text-lg absolute top-0 left-0 w-full ml-2"
+              data-trim
+              data-line-numbers="1-4|5-6|8-9|10|1-10"
+            >
+              <script type="text/template">
+                  let a = { 
+                    name: "John",
+                    age: 21
+                  };
+                  a.age = 22;
+                  a['age'] = 22;
+
+                  let b = ['string', 0, true];
+                  b[0] = 'hello';
+                  b[10]; // Returns undefined
+              </script>
+            </code>
+          </pre>
+        <div class="code-comment6 code-comment absolute text-white text-2xl"
+          style="right: 4rem; top: 16.5rem; width: 28rem" />
+      </section>
+
+      <section>
+        <h2>JavaScript <span class="text-2xl tracking-wider">(JS)</span></h2>
+        <p class="text-orange-600 pb-10 text-3xl">for interactivity</p>
+        <p class="text-xl">Indexing Objects</p>
+        <pre class="w-full">
+            <code
+              class="hljs js text-lg absolute top-0 left-0 w-full ml-2"
+              data-trim
+              data-line-numbers="1-5|5-8"
+            >
+              <script type="text/template">
+                  let a = { 
+                    name: "John",
+                    age: 21
+                  };
+                  let key = "age";
+
+                  a.key = 22;  // This doesn't work
+                  a[key] = 22; // This does
+              </script>
+            </code>
+          </pre>
+      </section>
+
+      <section>
+        <h2>JavaScript <span class="text-2xl tracking-wider">(JS)</span></h2>
+        <p class="text-orange-600 pb-10 text-3xl">for interactivity</p>
+        <p class="text-xl">Loops</p>
+        <pre class="w-full">
+            <code
+              class="hljs js text-lg absolute top-0 left-0 w-full ml-2"
+              data-trim
+              data-line-numbers="1-7|1-3|5-7|9-11|2,6,10"
+            >
+              <script type="text/template">
+                  for (let i = 0; i < 10; i++) {
+                    console.log("This is how you print");
+                  }
+
+                  while (true) {
+                    console.log("Infinite loop");
+                  }
+
+                  for (let x of [1, 2, 3]) {
+                    console.log(x); // Logs 1 to 3
+                  }
+              </script>
+            </code>
+          </pre>
+        <div class="code-comment7 code-comment absolute text-white text-2xl"
+          style="right: 4rem; top: 21rem; width: 28rem" />
+      </section>
+
+      <section>
+        <h2>JavaScript <span class="text-2xl tracking-wider">(JS)</span></h2>
+        <p class="text-orange-600 pb-10 text-3xl">for interactivity</p>
+        <p class="text-xl">Functions</p>
+        <pre class="w-full">
+            <code
+              class="hljs js text-lg absolute top-0 left-0 w-full ml-2"
+              data-trim
+              data-line-numbers="1-3|4-6|7|7|9|10"
+            >
+              <script type="text/template">
+                  function myFunction(a, b, c) {
+                    console.log(a, b, c);
+                  }
+                  const myFunction = (a, b, c) => {
+                    console.log(a, b, c);
+                  }
+                  [1, 2, 3].map( (n) => (n * n) );
+
+                  myFunction(1, 2, 3, 4, 5, 6); // valid
+                  myFunction(); // valid, but logs undefined
+              </script>
+            </code>
+          </pre>
+        <div class="code-comment8 code-comment absolute text-white text-2xl"
+          style="right: 4rem; top: 16.5rem; width: 28rem" />
+      </section>
+
+      <section>
+        <h2>JavaScript <span class="text-2xl tracking-wider">(JS)</span></h2>
+        <p class="text-orange-600 pb-10 text-3xl">for interactivity</p>
+        <p class="text-xl">Error handling</p>
+        <pre class="w-full">
+            <code
+              class="hljs js text-lg absolute top-0 left-0 w-full ml-2"
+              data-trim
+              data-line-numbers="1,4,5,7|2-3|6"
+            >
+              <script type="text/template">
+                  try {
+                    throw new Error(`This went wrong: ${x}`);
+                    console.log("This will never be printed..")
+                  }
+                  catch (error) {
+                    console.error("An error occurred:", error);
+                  }
+              </script>
+            </code>
+          </pre>
+        <div class="code-comment15 code-comment absolute text-white text-2xl"
+          style="right: 4rem; top: 16.5rem; width: 28rem" />
+      </section>
+
+      <section>
+        <h2>JavaScript <span class="text-2xl tracking-wider">(JS)</span></h2>
+        <p class="text-orange-600 pb-10 text-3xl">for interactivity</p>
+        <p class="text-xl">Object-oriented</p>
+        <pre class="w-full fade-in-then-out">
+            <code
+              class="hljs js text-lg absolute top-0 left-0 w-full ml-2"
+              data-trim
+              data-line-numbers="1-11|13-20|21-24"
+            >
+              <script type="text/template">
+                class User {
+                  username = null;
+                
+                  constructor(name) {
+                    this.username = name;
+                  }
+                
+                  getUsername() {
+                    return this.username;
+                  }
+                }
+                
+                class Admin extends User {
+                  isAdmin = true;
+                
+                  constructor(name) {
+                    super(name);
+                  }
+                }
+                
+                let x = new User("user1");
+                console.log(x.getUsername());
+                let y = new Admin("admin1");
+                console.log(y.getUsername());
+              </script>
+            </code>
+          </pre>
+        <div class="code-comment9 code-comment absolute text-white text-2xl"
+          style="right: 4rem; top: 16.5rem; width: 28rem" />
+      </section>
+
+      <section>
+        <h2>JavaScript <span class="text-2xl tracking-wider">(JS)</span></h2>
+        <p class="text-orange-600 pb-10 text-3xl">
+          Background knowledge (maybe don't use this)
+        </p>
+        <div class="text-3xl">
+          <p>
+            Remember our HTML tree? This is accessible as an Object in
+            JavaScript, called the Document Object Model (DOM).
+          </p>
+        </div>
+        <img src="./assets/tree.png" class="" style="height: 34rem" />
+        <div class="w-20 h-20 bg-red-600 absolute fragment" style="bottom: 17.5rem; left: 0.8rem; opacity: 50%"
+          data-fragment-index="2"></div>
+
+        <pre class="absolute fragment" data-fragment-index="1" style="bottom: 34rem; left: 10rem; width: 23rem">
+            <code
+              class="hljs js text-lg absolute top-0"
+              style="width: 23rem"
+              data-trim
+              data-line-numbers="1|2|3|4|1-4"
+            >
+              <script type="text/template">
+                document
+                  .querySelector("p")
+                  .classList
+                  .add('text-red');
+              </script>
+            </code>
+          </pre>
+        <div class="code-comment10 code-comment absolute text-white text-2xl text-left"
+          style="left: 29rem; top: 29.5rem; width: 20rem" />
+      </section>
+
+      <section>
+        <h2>JavaScript <span class="text-2xl tracking-wider">(JS)</span></h2>
+        <p class="text-orange-600 pb-10 text-3xl">
+          Background knowledge (maybe don't use this)
+        </p>
+        <p class="text-3xl">Event-driven programming</p>
+        <pre class="absolute" style="left: -18rem; top: 4.7rem; width: 23rem">
+            <code
+              class="hljs html text-lg absolute top-0"
+              style="width: 23rem"
+              data-trim
+              data-line-numbers="1|1-3"
+            >
+            <script type="text/template">
+              <button id="submit-button">
+                Submit form
+              </button>
+            </script>
+            </code>
+          </pre>
+
+        <pre class="absolute" style="left: 15rem; top: 0; width: 31rem">
+            <code
+              class="hljs js text-lg absolute top-0"
+              style="width: 31rem"
+              data-trim
+              data-line-numbers="1-2|3|4|3-5"
+            >
+            <script type="text/template">
+              document
+                .querySelector("#submit-button")
+                .addEventListener('click', () => {
+                  console.log("The button was clicked!")
+                })
+            </script>
+            </code>
+          </pre>
+        <div class="code-comment11 code-comment absolute text-white text-3xl text-left"
+          style="left: 14rem; top: 33rem; width: 32rem" />
+      </section>
+
+      <section>
+        <h3>Our website so far</h3>
+        <div class="ml-12 w-full absolute pt-2" style="min-height: 70vh">
+          <iframe src="testsite/2.html" class="w-9/12 absolute" style="min-height: 70vh; left: -12rem">
+          </iframe>
+          <pre class="w-3/4 h-20 absolute z-10" style="top: 0rem; right: -25rem">
+              <code
+                class="hljs html absolute top-0 left-0 text-base w-3/4"
+                data-trim
+                data-line-numbers="9-11|42-52|53-55|57,71|66-68|67|58-65|59|60-64"
+              >
+                <script type="text/template">
+                  <html lang="en">
+                    <body>
+                      <div class="container">
+                        Username:
+                        <input type="text" />
+                        Password:
+                        <input type="password" />
+                        <button id="submit-btn">Log in</button>
+                        <div class="error container">
+                          Please fill in all the fields
+                        </div>
+                      </div>
+                    </body>
+                  
+                    <style>
+                      .container {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                      }
+                      input {
+                        width: 10rem;
+                        padding: 6px;
+                        margin: 2px;
+                        border-width: 1px;
+                        border-radius: 0.5rem;
+                        border-color: gray;
+                      }
+                      #submit-btn {
+                        margin-top: 1rem;
+                        width: 6rem;
+                        border-radius: 0.5rem;
+                        padding: 0.5rem;
+                        font-weight: bold;
+                        color: white;
+                        background-color: blue;
+                      }
+                      #submit-btn:hover {
+                        background-color: rgb(81, 81, 238);
+                      }
+                      .error {
+                        visibility: hidden;
+                        margin-top: 1rem;
+                        width: 12rem;
+                        height: 4rem;
+                        background-color: red;
+                        padding: 1rem;
+                        color: white;
+                        font-weight: bold;
+                        border-radius: 0.5rem;
+                      }
+                      .error.visible {
+                        visibility: visible;
+                      }
+                    </style>
+                    <script>
+                      function checkInput(event) {
+                        const errorNode = document.querySelector(".error");
+                        if (!event.target.value) {
+                          errorNode.classList.add("visible");
+                        } else {
+                          errorNode.classList.remove("visible");
+                        }
+                      }
+                      for (const input of document.querySelectorAll("input")) {
+                        input.addEventListener("input", checkInput);
+                      }
+                    </scrіpt>
+                  </html>
+                </script>
+              </code>
+            </pre>
+        </div>
+      </section>
+
+      <section>
+        <h3>
+          Let's <span class="text-orange-600">reorganize</span> the code
+        </h3>
+        <p class="text-3xl font-bold">
+          Place CSS in .css files, JS in .js files, and link it in the HTML
+          file.
+        </p>
+        <pre class="h-20 absolute z-10" style="top: 5rem; left: -22rem; width: 62%">
+          <code
+            class="hljs html absolute top-0 left-0 text-base w-full"
+            data-trim
+            data-line-numbers
+          >
+            <script type="text/template">
+              <html lang="en">
+                <body>
+                  <div class="container">
+                    Username:
+                    <input type="text" />
+                    Password:
+                    <input type="password" />
+                    <button id="submit-btn">Log in</button>
+                    <div class="error container">
+                      Please fill in all the fields
+                    </div>
+                  </div>
+                </body>
+              
+                <style>
+                  .container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                  }
+                  input {
+                    width: 10rem;
+                    padding: 6px;
+                    margin: 2px;
+                    border-width: 1px;
+                    border-radius: 0.5rem;
+                    border-color: gray;
+                  }
+                  #submit-btn {
+                    margin-top: 1rem;
+                    width: 6rem;
+                    border-radius: 0.5rem;
+                    padding: 0.5rem;
+                    font-weight: bold;
+                    color: white;
+                    background-color: blue;
+                  }
+                  #submit-btn:hover {
+                    background-color: rgb(81, 81, 238);
+                  }
+                  .error {
+                    visibility: hidden;
+                    margin-top: 1rem;
+                    width: 12rem;
+                    height: 4rem;
+                    background-color: red;
+                    padding: 1rem;
+                    color: white;
+                    font-weight: bold;
+                    border-radius: 0.5rem;
+                  }
+                  .error.visible {
+                    visibility: visible;
+                  }
+                </style>
+                <script>
+                  function checkInput(event) {
+                    const errorNode = document.querySelector(".error");
+                    if (!event.target.value) {
+                      errorNode.classList.add("visible");
+                    } else {
+                      errorNode.classList.remove("visible");
+                    }
+                  }
+
+                  document.querySelectorAll("input")
+                    .forEach((inputElement) => {
+                      inputElement.addEventListener("blur", checkInput);
+                  });
+                </scrіpt>
+              </html>
+            </script>
+          </code>
+        </pre>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-white absolute z-10" fill="none"
+          style="left: 30rem; top: 16rem" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+        <pre class="h-20 absolute" style="top: -1rem; right: -26rem; width: 62%">
+          <code
+            class="hljs html absolute text-base w-full"
+            data-trim
+            data-line-numbers="2-4|17"
+            style="top: -1rem;"
+          >
+            <script type="text/template">
+              <html lang="en">
+                <head>
+                  <link rel="stylesheet" href="/css/styles.css">
+                </head>
+                <body>
+                  <div class="container">
+                    Username:
+                    <input type="text" />
+                    Password:
+                    <input type="password" />
+                    <button id="submit-btn">Log in</button>
+                    <div class="error container">
+                      Please fill in all the fields
+                    </div>
+                  </div>
+                </body>
+                <script src="/scripts/script.js"> </scrіpt>
+              </html>
+            </script>
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>JavaScript <span class="text-2xl tracking-wider">(JS)</span></h2>
+        <p class="text-orange-600 pb-4 text-3xl">for interactivity</p>
+        <p class="text-3xl">Browser APIs</p>
+        <p class="fragment fade-in-then-out">
+          The browser exposes its features via the global Object, called
+          <code class="hljs-built_in">window</code>
+        </p>
+        <div>
+          <pre class="absolute fragment fade-in-then-out" style="left: 0; top: 12rem; width: 31rem">
+            <code
+              class="hljs js text-lg absolute top-0"
+              style="width: 31rem"
+              data-trim
+              data-line-numbers
+            >
+            <script type="text/template">
+              window.scrollTo({top: 100, left: 100})
+            </script>
+            </code>
+          </pre>
+          <div>
+            <div class="text-2xl absolute fragment text-gray-700" style="bottom: -4rem; left: 14.5rem">
+              N.B. You may omit <code class="">window</code> if not ambiguous.
+            </div>
+            <pre class="absolute" style="left: 0; top: 10rem; width: 31rem">
+              <code
+                class="hljs js text-lg absolute top-0 fragment fade-in-then-out"
+                style="width: 48rem"
+                data-trim
+                data-line-numbers="1|2"
+              >
+              <script type="text/template">
+                window.localStorage.setItem('shoppingcart', ['bananas'])
+                let cart = localStorage.getItem('shoppingcart')
+              </script>
+              </code>
+            </pre>
+          </div>
+          <pre class="absolute fragment" style="left: 0; top: 12rem; width: 31rem">
+            <code
+              class="hljs js text-lg absolute top-0"
+              style="width: 40rem"
+              data-trim
+              data-line-numbers
+            >
+            <script type="text/template">
+              window.fetch('/api/user?id=12345')
+            </script>
+            </code>
+          </pre>
+          <div class="fragment -mt-32 text-3xl">
+            To understand <code class="hljs-string">fetch</code>, we will need
+            to know how <br />
+            <span class="font-bold text-orange-600">server-side code</span>
+            and
+            <span class="font-bold text-orange-600">asynchronous programming</span>
+            work.
+          </div>
+          <div class="code-comment12 code-comment absolute text-white text-3xl text-left"
+            style="left: 14rem; top: 33rem; width: 32rem" />
+        </div>
+      </section>
+
+      <section>
+        <h2>Part one done</h2>
+        <div class="flex justify-between">
+          <div class="fragment flex flex-col">
+            <span class="text-orange-600">Basics</span>
+            <ul class="text-3xl pt-8 space-y-4">
+              <li>HTML, CSS, JavaScript</li>
+              <li>Event driven programming</li>
+              <li>Browser APIs</li>
+            </ul>
+          </div>
+
+          <div class="fragment flex flex-col">
+            <span class="text-orange-600">Advanced</span>
+            <ul class="text-3xl pt-8 space-y-4">
+              <li class="fragment fade-left">Servers and server-side code</li>
+              <li class="fragment fade-left">Asynchronous JavaScript</li>
+              <li class="fragment fade-left">Component frameworks</li>
+              <li class="fragment fade-left">
+                Buildstep: Using tools/frameworks
+              </li>
+            </ul>
+          </div>
+      </section>
+      <section>
+        <h2>Server-side code</h2>
+        <div class="text-orange-600 text-3xl font-bold mb-10">
+          Static v.s. Dynamic website
+        </div>
+        <ul class="text-2xl space-y-6 w-1/2">
+          <li class="fragment">
+            <strong>Static</strong>: Same for everyone who visits it.
+            <br />Blogs, restaurant menus, company homepage. A
+            <span class="text-orange-600">catalogue</span>.
+          </li>
+          <li class="fragment">
+            <strong>Dynamic</strong>: Personalized experience. Facebook,
+            Twitter, Brightspace. Websites with
+            <span class="text-orange-600">often-changing content</span>.
+            <div class="fragment">You need server-side code for this.</div>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Server-side code</h2>
+        <div class="fragment text-3xl text-orange-600">Static website</div>
+        <div class="w-full flex justify-between pt-10 fragment">
+          <div class="flex flex-col items-center">
+            Client (browser)
+            <img src="./assets/browser2.jpg" class="w-40" />
+            <div id="http-index-req"
+              class="box-border hidden text-3xl mt-20 rounded-md font-mono p-2 w-48 bg-gray-900 transform text-left transition-transform duration-700">
+              HTTP <span class="font-bold">GET</span><br />
+              /index.html
+            </div>
+            <div id="http-index-res"
+              class="box-border fragment text-3xl rounded-md font-mono p-2 mt-20 w-48 text-white bg-green-800 transform text-left transition-transform duration-700 hidden"
+              style="transform: translateX(42rem)">
+              HTTP <span class="font-bold">200</span><br />
+              index.html
+            </div>
+          </div>
+          <div class="absolute flex flex-col invisible" id="http-arrow" style="left: 22rem; top: 15rem">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" id="http-arrow-svg"
+              class="transform transition-transform duration-500" style="width: 20rem; height: 8rem" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+            <div class="text-3xl italic" id="request-response">
+              HTTP Request
+            </div>
+          </div>
+          <div class="flex flex-col items-start w-56">
+            <div class="ml-4">Server</div>
+            <img src="./assets/server3.png" class="w-40" />
+            <div id="server-text" class="text-gray-500 text-2xl text-left"></div>
+          </div>
+          <div class="fragment hidden"></div>
+          <div class="fragment hidden"></div>
+          <div class="fragment hidden"></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Server-side code</h2>
+        <div class="fragment text-3xl text-orange-600">
+          Tools for static websites
+        </div>
+        <div class="fragment text-2xl pt-6">
+          You can of course just write plain HTML/CSS/JS
+        </div>
+        <div class="fragment text-2xl pt-6 w-2/3 mx-auto">
+          But many tools/frameworks allow you to fetch data from somewhere,
+          then generate HTML/CSS/JS with it:
+        </div>
+        <ul class="flex flex-col pt-4 text-2xl mx-auto">
+          <li class="fragment"><a href="https://nuxtjs.org/">Nuxt</a></li>
+          <li class="fragment">
+            <a href="https://www.gatsbyjs.com/">Gatsby</a> &
+            <a href="https://nextjs.org/">NextJS</a>
+          </li>
+          <li class="fragment">
+            <a href="https://kit.svelte.dev/">SvelteKit</a>
+          </li>
+        </ul>
+        <div class="fragment text-2xl mt-4">
+          The <a href="https://ludev.nl/projects"> Project Overview</a> is a statically <i class="italic">generated</i>
+          site
+        </div>
+        <div class="fragment text-2xl mt-4">
+          Static websites can still do a lot!<br />
+          But they can not offer a personalized experience
+        </div>
+      </section>
+
+      <section>
+        <h2>Server-side code</h2>
+        <div class="fragment text-3xl text-orange-600">
+          Dynamic website (templates)
+        </div>
+        <div class="w-full flex justify-between pt-10 fragment">
+          <div class="flex flex-col items-center">
+            Client (browser)
+            <img src="./assets/browser2.jpg" class="w-40" />
+            <div id="http-account-req"
+              class="box-border hidden text-3xl mt-20 rounded-md font-mono p-2 w-56 bg-gray-900 transform text-left transition-transform duration-700">
+              HTTP <span class="font-bold">GET</span>
+              <br />
+              /account.html
+            </div>
+            <div id="http-account-res"
+              class="box-border fragment text-3xl rounded-md font-mono p-2 mt-20 w-56 text-white bg-green-800 transform text-left transition-transform duration-700 hidden"
+              style="transform: translateX(38rem)">
+              HTTP <span class="font-bold">200</span><br />
+              account.html
+            </div>
+          </div>
+          <div class="absolute flex flex-col invisible" id="http-arrow2" style="left: 18rem; top: 15rem">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" id="http-arrow-svg2"
+              class="transform transition-transform duration-500" style="width: 20rem; height: 8rem" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+            <div class="text-3xl italic" id="request-response2">
+              HTTP Request
+            </div>
+          </div>
+          <div class="flex flex-col items-start" style="width: 20rem">
+            <div class="ml-4">Server</div>
+            <img src="./assets/server3.png" class="w-40" />
+            <div id="server-text2" class="text-gray-200 text-2xl text-left"></div>
+          </div>
+          <div class="fragment hidden"></div>
+          <div class="fragment hidden"></div>
+          <div class="fragment hidden"></div>
+          <div class="fragment hidden"></div>
+          <div class="fragment hidden"></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Server-side code</h2>
+        <div class="text-3xl text-orange-600">
+          Dynamic website (templates)
+        </div>
+
+        <div class="fragment text-2xl pt-6">
+          The 'classic' way of doing things
+        </div>
+        <div class="fragment text-2xl pt-6">
+          Template HTML files have their own syntax. Server fills in
+          variables:
+        </div>
+        <pre class="absolute fragment" style="top: 0rem; width: 31rem">
+          <code
+            class="hljs vue text-lg absolute bottom-0 left-0 w-full ml-2"
+            data-trim
+          >
+            <script type="text/template">
+              <!-- In home.html -->
+              <p>You are logged in as {{username}}</p>
+            </script>
+          </code>
+          </pre>
+        <div class="fragment text-2xl pt-2">
+          Then, in the server code (e.g. Python + Flask):
+        </div>
+        <pre class="absolute fragment" style="top: 0rem; width: 44rem">
+          <code
+            class="hljs python text-lg absolute top-0 left-0 w-full ml-2"
+            data-trim
+            data-line-numbers="|3|4"
+          >
+            <script type="text/template">
+              @app.route("/home")
+              def home():
+                  user = get_user() # get user from database
+                  return render_template("home.html", username=user.username)
+            </script>
+          </code>
+          </pre>
+      </section>
+
+      <section>
+        <h2>Server-side code</h2>
+        <div class="text-3xl text-orange-600">Disadvantages of templates</div>
+        <ul class="text-2xl pt-8 w-2/3 mx-auto space-y-4">
+          <li class="fragment">Frontend and backend codebases are coupled</li>
+          <li class="fragment">
+            Updating a page with new data requires roundtrip to server (= full
+            page refresh)
+          </li>
+          <li class="fragment">
+            If you make a different app with the same data, your choices are:<br />
+            1) Write a new backend<br />
+            2) Parse the data from the HTML
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Server-side code</h2>
+        <div class="fragment text-3xl text-orange-600">
+          Dynamic website (API)
+        </div>
+        <div class="w-full flex justify-between pt-10 fragment">
+          <div class="flex flex-col items-center">
+            Client (browser)
+            <img src="./assets/browser2.jpg" class="w-40" />
+            <div id="http-account2-req"
+              class="box-border hidden text-3xl mt-20 rounded-md font-mono p-2 w-56 bg-gray-900 transform text-left transition-transform duration-700">
+              HTTP <span class="font-bold">GET</span>
+              <br />
+              /account.html
+            </div>
+            <div id="http-account2-res"
+              class="box-border fragment text-3xl rounded-md font-mono p-2 mt-20 w-56 text-white bg-green-800 transform text-left transition-transform duration-700 hidden"
+              style="transform: translateX(38rem)">
+              HTTP <span class="font-bold">200</span><br />
+              account.html
+            </div>
+          </div>
+          <div class="absolute flex flex-col invisible" id="http-arrow3" style="left: 18rem; top: 12.5rem">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" id="http-arrow-svg3"
+              class="transform transition-transform duration-500" style="width: 20rem; height: 8rem" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+            <div class="text-3xl italic" id="request-response3">
+              HTTP Request
+            </div>
+
+            <div
+              class="absolute text-xl text-orange-600 italic flex invisible transform transition-transform duration-700 flex-col items-center"
+              style="left: -5rem; bottom: -40rem" id="http-arrow4">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" id="http-arrow-svg4"
+                class="transform transition-transform duration-500 text-orange-600" style="width: 12rem; height: 6rem"
+                viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+
+              Fetch
+              <pre style="width: 18rem; top: 4rem; margin-left: 2rem" class="invisible" id="json-example-4">
+                    <code
+                      class="hljs json text-lg absolute bottom-0 left-0 w-full ml-2 fragment leading-6"
+                      data-trim
+                    >
+                      <script type="text/template">
+                        {
+                          "name": "John Doe",
+                          "accountBalance": 100
+                        }
+                      </script>
+                    </code>
+                  </pre>
+            </div>
+          </div>
+          <div class="flex flex-col items-start" style="width: 20rem">
+            <div class="ml-4">Server</div>
+            <img src="./assets/server3.png" class="w-40" />
+            <div id="server-text3" class="text-gray-200 text-2xl text-left -mt-10"></div>
+          </div>
+          <div id="account-page"
+            class="w-48 h-56 space-y-2 bg-gray-100 text-black absolute text-base font-mono flex flex-col p-3 invisible"
+            style="bottom: -12rem; left: 3rem">
+            account.html
+            <div id="account-html-load" class="hidden">
+              <div class="w-11/12 h-2 mt-2 rounded-md bg-gray-700 animate-pulse"></div>
+              <div class="w-5/12 h-2 mt-2 rounded-md bg-gray-700 animate-pulse"></div>
+              <div class="w-8/12 h-2 mt-2 rounded-md bg-gray-700 animate-pulse"></div>
+              <div class="w-11/12 h-2 mt-4 rounded-md bg-gray-700 animate-pulse"></div>
+              <div class="w-8/12 h-2 mt-2 rounded-md bg-gray-700 animate-pulse"></div>
+              <div class="w-11/12 h-2 mt-2 rounded-md bg-gray-700 animate-pulse"></div>
+              <div class="w-5/12 h-2 mt-2 rounded-md bg-gray-700 animate-pulse"></div>
+              <div class="w-8/12 h-2 mt-2 rounded-md bg-gray-700 animate-pulse"></div>
+              <div class="w-11/12 h-2 mt-4 rounded-md bg-gray-700 animate-pulse"></div>
+              <div class="w-8/12 h-2 mt-2 rounded-md bg-gray-700 animate-pulse"></div>
+            </div>
+            <div id="account-html-data" class="hidden font-sans">
+              <p class="text-sm mb-2">Logged in as</p>
+              John Doe <br />
+              Balance: <span class="text-green-600 mt-2">€100</span>
+            </div>
+          </div>
+          <div id="client-text" class="absolute text-2xl w-48 text-left hidden" style="bottom: -10rem; left: 20rem">
+            Client now has skeleton page and will
+            <code class="hljs-built_in">fetch</code> data from the server via
+            JS
+          </div>
+          <div class="fragment hidden"></div>
+          <div class="fragment hidden"></div>
+          <div class="fragment hidden"></div>
+          <div class="fragment hidden"></div>
+          <div class="fragment hidden"></div>
+          <div class="fragment hidden"></div>
+          <div class="fragment hidden"></div>
+          <div class="fragment hidden"></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Server-side code</h2>
+        <div class="text-3xl text-orange-600">Dynamic website (API)</div>
+        <div class="fragment text-2xl pt-6">
+          Frontend routes return HTML/CSS/JS. Backend routes return data.
+        </div>
+        <div class="fragment text-2xl pt-6">
+          They could even be separate servers
+        </div>
+        <pre class="absolute fragment" style="width: 31rem">
+<code
+              class="hljs python text-lg w-full"
+              style="min-height: none;"
+              data-trim
+              data-line-numbers="|2|5|6-9|"
+            >
+              <script type="text/template">
+                # Backend route example:
+                @app.route('/api/get_user')
+                def get_user():
+                  # TODO: Check if allowed to access...
+                  user = get_user()
+                  return jsonify({
+                    'name': user.username,
+                    'accountBalance': user.account_balance
+                  })
+              </script>
+</code></pre>
+      </section>
+
+      <section>
+        <h2>Server-side code</h2>
+        <p class="text-orange-600 pb-10 text-3xl">
+          Disadvantages of API backends
+        </p>
+
+        <div class="text-2xl fragment mt-10">
+          More complicated logic on the frontend
+        </div>
+
+        <div class="text-2xl fragment mt-10">Does not work without JS</div>
+
+        <img src="./assets/ogtags.png" class="fragment mt-10" style="margin-left: auto; margin-right: auto" />
+
+        <div class="text-xl text-gray-500 fragment">
+          > Common solution is to SSR (server-side render) the first page
+          served
+        </div>
+      </section>
+
+      <section>
+        <h2>Asynchronous JS</h2>
+        <p class="text-orange-600 pb-10 text-3xl">Async/await</p>
+        <p class="text-3xl fragment">Why do we need asynchronous functions?</p>
+
+        <p class="text-3xl fragment">Because JavaScript is single-threaded</p>
+
+        <div class="text-3xl fragment mt-10">
+          When we make a long I/O call (like
+          <code class="hljs-built_in">fetch</code>), are we going to block the
+          thread until it is done?
+        </div>
+
+        <div class="text-3xl fragment mt-10">
+          An HTTP request can take any amount of time. The UI could be frozen
+          for a full 2 seconds or maybe even 20!
+        </div>
+      </section>
+
+      <section>
+        <h2>Asynchronous JS</h2>
+        <p class="text-orange-600 pb-10 text-3xl">Async/await</p>
+        <div class="text-2xl italic">
+          Problem: JavaScript is single-threaded.
+        </div>
+        <div class="text-3xl mt-10 fragment">
+          Solution: Don't block, and keep code running while the I/O call is
+          processing.
+        </div>
+        <div class="text-3xl mt-10 fragment">
+          We can register some code to run once the I/O call has resolved.
+        </div>
+      </section>
+
+      <section>
+        <h2>Asynchronous JS</h2>
+        <p class="text-orange-600 pb-10 text-3xl">Async/await</p>
+        <div class="text-2xl italic">
+          We will register some code to run once the I/O call has resolved.
+        </div>
+        <div class="text-4xl">How?</div>
+        <div class="text-3xl fragment mt-10">
+          In the past: Event-listeners.<br />But this gets very cumbersome
+          when chained
+        </div>
+        <pre class="absolute fragment" style="left: -6rem; top: 0rem; width: 31rem">
+            <code
+              class="hljs js text-lg absolute top-0"
+              style="width: 44rem"
+              data-trim
+              data-line-numbers="1|2|3|4"
+            >
+            <script type="text/template">
+              let req = new XMLHttpRequest();
+              req.addEventListener("load", () => { /* do something */});
+              req.open("GET", "/api/user_info");
+              req.send();
+            </script>
+            </code>
+          </pre>
+      </section>
+
+      <section>
+        <h2>Asynchronous JS</h2>
+        <p class="text-orange-600 pb-10 text-3xl">Async/await</p>
+        <div class="text-2xl italic">
+          We will register some code to run once the I/O call has resolved.
+        </div>
+        <div class="text-4xl mt-6">How?</div>
+        <div class="text-3xl mt-10">Nowadays: Promises</div>
+        <div class="text-3xl mt-10 fragment">
+          <code class="hljs-built_in">Promise</code> is a built-in type that
+          represents a value that will be available in the future.
+        </div>
+        <div class="text-3xl mt-6 fragment">
+          <code class="hljs-built_in">fetch</code> is an asynchronous
+          function, meaning its return type is
+          <code class="hljs-built_in">Promise</code>
+        </div>
+      </section>
+
+      <section>
+        <h2>Asynchronous JS</h2>
+        <p class="text-orange-600 pb-10 text-3xl">Async/await</p>
+        <div class="text-2xl mt-10 italic">
+          <code class="hljs-built_in">Promise</code> is a built-in type that
+          represents a value that will be available in the future.
+        </div>
+        <div class="text-3xl mt-6">
+          How do you get the value of a
+          <code class="hljs-built_in">Promise</code>?
+
+          <div class="fragment">
+            1. Use <code class="hljs-string">then</code>, and register a
+            function.
+            <pre class="absolute" style="left: -6rem; top: 0rem; width: 31rem">
+              <code
+                class="hljs js text-lg absolute top-0"
+                style="width: 44rem"
+                data-trim
+                data-line-numbers="1|2|3"
+              >
+              <script type="text/template">
+                response = fetch('/api/user_info')
+                  .then((response) => console.log("Response:", response))
+                  .catch((error) => console.log("Error:", error))
+              </script>
+              </code>
+            </pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Asynchronous JS</h2>
+        <p class="text-orange-600 text-3xl">Async/await</p>
+        <div class="text-2xl mt-10 italic">
+          <code class="hljs-built_in">Promise</code> is a built-in type that
+          represents a value that will be available in the future.
+        </div>
+        <div class="text-3xl">
+          How do you get the value of a
+          <code class="hljs-built_in">Promise</code>?
+          <div class="fragment">
+            2. Use <code class="hljs-keyword">await</code>
+          </div>
+          <pre class="absolute fragment" style="left: -6rem; top: 0rem; width: 31rem">
+              <code
+                class="hljs js text-lg absolute top-0"
+                style="width: 44rem"
+                data-trim
+                data-line-numbers="1|2"
+              >
+              <script type="text/template">
+                let response = await fetch('/api/user_info');
+                console.log("Response:", response);
+              </script>
+              </code>
+            </pre>
+          <div class="fragment text-3xl mt-10">
+            This is only available in
+            <code class="hljs-keyword">async</code> functions!
+            <pre class="absolute" style="left: -6rem; top: 0rem; width: 31rem">
+                <code
+                  class="hljs js text-lg absolute top-0"
+                  style="width: 44rem"
+                  data-trim
+                  data-line-numbers="1-3|4"
+                >
+                <script type="text/template">
+                  async function myFetch() {
+                    return await fetch('/user_data')
+                  }
+                  const myFetch = async () => await fetch('/user_data')
+                </script>
+                </code>
+              </pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Asynchronous JS</h2>
+        <p class="text-orange-600 text-3xl">Async/await</p>
+        <div class="text-2xl mt-10">
+          <code class="hljs-keyword">await</code> is only available in
+          <code class="hljs-keyword">async</code> functions!
+          <pre class="absolute" style="left: -6rem; top: 0rem; width: 31rem">
+              <code
+                class="hljs js text-lg absolute top-0"
+                style="width: 44rem"
+                data-trim
+                data-line-numbers
+              >
+              <script type="text/template">
+                async function myFetch() {
+                  return await fetch('/user_data')
+                }
+                const myFetch = async () => await fetch('/user_data')
+              </script>
+              </code>
+            </pre>
+          <p class="text-2xl fragment pt-10">
+            An <code class="hljs-keyword">async</code> function automatically
+            returns a
+            <code class="hljs-built_in">Promise</code>
+          </p>
+          <div class="text-2xl fragment pt-10">
+            Instead of <code class="hljs-string">.catch</code>, use
+            <code class="hljs-keyword">try</code> /
+            <code class="hljs-keyword">catch</code> to handle errors.
+            <pre class="absolute" style="left: -6rem; top: 0rem; width: 31rem">
+                <code
+                  class="hljs js text-lg absolute top-0"
+                  style="width: 44rem"
+                  data-trim
+                  data-line-numbers="2|2-5|6-8|9-10"
+                >
+                <script type="text/template">
+                  async function myFetch() {
+                    let data;
+                    try {
+                      data = await fetch('/user_data')
+                    } 
+                    catch (e) {
+                      console.log("Error", e)
+                    }
+                    console.log("Got data", data)
+                    return data;
+                  }
+                </script>
+                </code>
+              </pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Asynchronous JS</h2>
+        <p class="text-orange-600 text-3xl">Async/await</p>
+        <div class="text-3xl">
+          Common mistake with
+          <code class="hljs-keyword">async</code> functions
+        </div>
+        <pre class="absolute" style="left: -6rem; top: 0rem; width: 31rem">
+            <code
+              class="hljs js text-lg absolute top-0"
+              style="width: 44rem"
+              data-trim
+              data-line-numbers="1|2"
+            >
+            <script type="text/template">
+              const result = fetch('/user_data');
+              console.log("Result:", result);
+            </script>
+            </code>
+          </pre>
+        <div class="text-3xl fragment flex flex-col items-center">
+          <div>This happens:</div>
+          <img src="assets/promise.png" class="scale-150 transform" style="left: 24rem" />
+        </div>
+        <p class="fragment text-3xl pt-32">
+          <code class="hljs-built_in">Promise</code> values are only available
+          after <code class="hljs-keyword">await</code> or in a
+          <code class="hljs-string">then()</code> callback.
+        </p>
+      </section>
+
+      <section>
+        <h3>Component frameworks</h3>
+        <p class="text-orange-600 text-3xl">Encapsulate, reuse & share</p>
+        <p class="text-3xl fragment">
+          Over the years, several issues became apparent with "normal"
+          frontend development:
+        </p>
+        <ul class="flex flex-col flex-wrap space-y-4">
+          <li class="fragment text-2xl">
+            Imperative DOM manipulation in JavaScript is a pain.
+            <div class="mt-4 w-2/3 text-xl text-gray-500">
+              > You can view the DOM as a global variable that can be mutated
+              from anywhere in the code. Yikes.
+            </div>
+          </li>
+          <li class="fragment text-2xl">
+            App is split in HTML/CSS/JS but this isn't how humans think about
+            a UI
+          </li>
+          <li class="fragment text-2xl">
+            Lots of boilerplate and security pitfalls (XSS)
+          </li>
+          <li class="fragment text-2xl">Hard to avoid duplicate code</li>
+        </ul>
+        <p class="text-3xl fragment">
+          <span class="text-orange-600">Component</span> frameworks have
+          therefore become very popular.
+        </p>
+      </section>
+
+      <section>
+        <h3>Component frameworks</h3>
+        <p class="text-orange-600 text-3xl">Encapsulate, reuse & share</p>
+        <p class="text-2xl italic">
+          Component frameworks have therefore become very popular.
+        </p>
+        <ul class="text-2xl pl-32 space-y-6">
+          <li class="fragment">
+            <span class="text-orange-600">Angular</span> (2010) by Google
+          </li>
+          <li class="fragment">
+            <span class="text-orange-600">React</span> (2013) by Facebook
+          </li>
+          <li class="fragment">
+            <span class="text-orange-600">Vue</span> (2014) by Evan You.<br />
+            Light-weight, minimal Angular alternative
+          </li>
+          <li class="fragment">
+            <span class="text-orange-600">Svelte</span> (2018) by Rich Harris.
+            <br />
+            Because all the above are "lacking/non-performant"
+          </li>
+        </ul>
+        <p class="text-3xl fragment">
+          Each has its own, non-standard syntax to enhance HTML/CSS/JS.
+        </p>
+      </section>
+
+      <section>
+        <h3>Component frameworks</h3>
+        <p class="text-orange-600 text-3xl">Encapsulate, reuse & share</p>
+        <p class="text-3xl text-left">
+          Our app is currently split into files like this:
+        </p>
+        <div class="fragment w-1/3 h-40 flex text-white">
+          <div class="h-full bg-teal-800 w-1/3 flex items-center justify-center">
+            HTML
+          </div>
+          <div class="h-full bg-purple-700 w-1/3 flex items-center justify-center">
+            CSS
+          </div>
+          <div class="h-full bg-orange-700 w-1/3 flex items-center justify-center">
+            JS
+          </div>
+        </div>
+        <div class="fragment text-3xl text-left mt-3">
+          With a component framework, this becomes:
+        </div>
+        <div class="flex space-x-2 w-full flex-row fragment">
+          <div class="flex relative w-24 h-24">
+            <div class="w-1/3 bg-teal-800"></div>
+            <div class="w-1/3 bg-purple-700"></div>
+            <div class="w-1/3 bg-orange-700"></div>
+            <div class="absolute inset-0 text-base mt-4 font-bold">
+              Main button
+            </div>
+          </div>
+
+          <div class="flex relative w-24 h-24">
+            <div class="w-1/3 bg-teal-800"></div>
+            <div class="w-1/3 bg-purple-700"></div>
+            <div class="w-1/3 bg-orange-700"></div>
+            <div class="absolute inset-0 text-base mt-4 font-bold">
+              Login Form
+            </div>
+          </div>
+          <div class="flex relative w-24 h-24">
+            <div class="w-1/3 bg-teal-800"></div>
+            <div class="w-1/3 bg-purple-700"></div>
+            <div class="w-1/3 bg-orange-700"></div>
+            <div class="absolute inset-0 text-base mt-4 font-bold">
+              Account overview
+            </div>
+          </div>
+          <div class="flex relative w-24 h-24">
+            <div class="w-1/3 bg-teal-800"></div>
+            <div class="w-1/3 bg-purple-700"></div>
+            <div class="w-1/3 bg-orange-700"></div>
+            <div class="absolute inset-0 text-base mt-4 font-bold">
+              Navbar
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Component frameworks</h3>
+        <p class="text-orange-600 text-3xl">Encapsulate, reuse & share</p>
+        <p class="text-3xl">They all have the same common ideas:</p>
+        <p class="text-3xl fragment">
+          1. Developers can simply
+          <span class="text-orange-600">declare</span> what their UI looks
+          like. <br />No "ugly" DOM manipulation.
+        </p>
+        <p class="text-3xl fragment pt-8">
+          2. Your UI consists of reusable
+          <span class="text-orange-600">components</span>. <br />Components
+          are bundles of HTML/CSS/JS.
+        </p>
+      </section>
+
+      <section>
+        <h3>Component frameworks</h3>
+        <p class="text-orange-600 text-3xl">Encapsulate, reuse & share</p>
+        <p class="text-3xl pb-10">Example of a Svelte-component for a counter</p>
+        <p class="text-lg"><code>Counter.svelte</code></p>
+        <pre class="absolute" style="right: -4rem">
+            <code
+              class="hljs vue text-lg absolute top-0"
+              style="width: 50rem"
+              data-trim
+              data-line-numbers="1-3|2|5-11|6,8,10|7|9|2,9|5-11|13-17"
+            >
+          
+            <script type="text/template">
+              <sсript>
+                export let count = 0;
+              </sсript>
+
+              <div class="counter">
+                {#if count === 0}
+                  We have nothing yet...
+                {:else}
+                  {count}
+                {/if}
+              </div>
+          
+              <style>
+                .counter {
+                  /* styles ... */
+                }
+              </style>
+            </script>
+            </code>
+          </pre>
+      </section>
+
+      <section>
+        <h3>Component frameworks</h3>
+        <p class="text-orange-600 text-3xl">Encapsulate, reuse & share</p>
+        <p class="text-3xl pb-10">And now use the component anywhere:</p>
+        <pre class="absolute" style="right: -4rem">
+            <code
+              class="hljs vue text-lg absolute top-0"
+              style="width: 50rem"
+              data-trim
+              data-line-numbers="1-3|2|5-10|7-9"
+            >
+            <script type="text/template">
+                <sсript lang="ts">
+                  import Counter from "./Counter.svelte";
+                </sсript>
+
+                <h1>This is the main page.</h1>
+                <div>Here are our counters:
+                  <Counter count={0} />
+                  <Counter count={1} />
+                  <Counter count={99} />
+                </div>
+            </script>
+            </code>
+          </pre>
+        <div class="code-comment14 code-comment absolute text-white text-3xl text-left"
+          style="left: 14rem; top: 33rem; width: 32rem" />
+      </section>
+
+      <section>
+        <h3>Component frameworks</h3>
+        <p class="text-orange-600 text-3xl">Encapsulate, reuse & share</p>
+        <p class="text-3xl pb-10">
+          Component frameworks make it easy to import and use components
+          written by others!
+        </p>
+        <p class="text-3xl pt-4 fragment">
+          This can save you a lot of work.<br />
+          E.g., Use Google's
+          <span class="text-orange-600">Material UI</span> library and you
+          will only have to position pre-made components on a page.
+        </p>
+      </section>
+
+      <section>
+        <h2>Adding a buildstep</h2>
+        <p class="text-orange-600 text-3xl">Using frameworks & tools</p>
+        <div class="w-3/4 mx-auto flex flex-col items-center space-y-6 text-xl">
+          <p class="fragment">Component frameworks are often available as just JS libraries</p>
+          <p class="fragment">However, nowadays, it is common to have compilers/transpilers/bundlers that allow for
+            easier syntax/complex features</p>
+          <p class="fragment">This means you write your website in an easier way than raw HTML/CSS/JS, and then compile
+            it to HTML/CSS/JS. This is a <span class="text-orange-600">buildstep</span>.</p>
+          <p class="fragment">You mostly use <span class="text-orange-600">NodeJS</span> for this, which runs JS outside
+            the browser</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Adding a buildstep</h2>
+        <p class="text-orange-600 text-3xl">Using frameworks & tools</p>
+        <p class="fragment text-2xl">Setting all of this up is cumbersome, so I have made some templates you can
+          copy/draw inspiration from:</p>
+        <div class="text-2xl fragment">
+          <ul class="text-xl flex flex-col items-center space-y-3">
+            <li><a href="https://github.com/ludev-nl/vue-python-template">Vue-frontend + Python/Flask-backend</a></li>
+            <li><a href="https://github.com/ludev-nl/nextjs-template">React-frontend + TypeScript-backend</a></li>
+            <li><a href="https://github.com/ludev-nl/sveltekit-template">Svelte-frontend + TypeScript-backend</a></li>
+          </ul>
+          <div class="mt-10">They are all available under the LUDev organisation on GitHub!</div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Adding a buildstep</h2>
+        <p class="text-orange-600 text-3xl">What is TypeScript?</p>
+        <p class="fragment text-2xl">TypeScript is a statically typed superset of JavaScript.<br />It is a language that
+          compiles to JavaScript.</p>
+        <div class="fragment">
+          <pre class="absolute" style="top: 0rem; width: 40rem">
+              <code
+                class="hljs ts text-lg absolute top-0"
+                style="width: 40rem"
+                data-trim
+                data-line-numbers="|1-3|5-7|9-10"
+              >
+              <script type="text/template">
+                let x: number = 1;
+                let y: string = "hello";
+                let z = 2; // Type is inferred from assigned value
+
+                function takesNumber(num: number) {
+                  return num + 1;
+                }
+
+                // Error!
+                takesNumber(y);
+              </script>
+              </code>
+            </pre>
+        </div>
+      </section>
+
+      <section>
+        <h2>Adding a buildstep</h2>
+        <p class="text-orange-600 text-3xl">What is TypeScript?</p>
+        <p class="text-2xl">TypeScript is a statically typed superset of JavaScript.<br />It is a language that compiles
+          to JavaScript.</p>
+        <div class="fragment">
+          <pre class="absolute" style="left: -24rem; top: 0rem; width: 31rem">
+              <code
+                class="hljs typescript text-lg absolute top-0"
+                style="width: 31rem"
+                data-trim
+                data-line-numbers="1-3|5-10"
+              >
+              <script type="text/template">
+                function printName(person) {
+                  console.log(person.firstName)
+                }
+  
+                let person = {
+                  name: 'John',
+                  age: 26
+                }
+                printName(person)
+                // Logs undefined...
+              </script>
+              </code>
+            </pre>
+          <pre class="absolute fragment" style="right: -18rem; top: -4.5rem; width: 31rem">
+              <code
+                class="hljs ts text-lg absolute top-0"
+                style="width: 31rem"
+                data-trim
+                data-line-numbers="1-4|6|10-13"
+              >            <script type="text/template">
+                type Person = {
+                  firstName: string,
+                  age: number
+                }
+  
+                function printName(person: Person) {
+                  console.log(person.firstName)
+                }
+  
+                // Will give you an error!
+                let person: Person = {
+                  name: 'John',
+                  age: 26
+                }
+                printName(person)
+              </script>
+  
+              </code>
+            </pre>
+        </div>
+      </section>
+
+      <section>
+        <h2>The End</h2>
+        <div class="text-3xl text-orange-600">Links</div>
+        <div class="text-xl grid grid-rows-3 grid-cols-2 mt-20 row-gap-6">
+          <div class="font-bold">Learn CSS</div>
+          <ul>
+            <li><a href="https://flexboxfroggy.com/">Flexbox Froggy</li>
+            <li>
+              <a href="https://web.dev/learn/css/">Web.dev CSS tutorial</a>
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS">
+                Mozilla Developer Network CSS tutorial
+              </a>
+            </li>
+          </ul>
+
+          <div class="font-bold">Learn JavaScript</div>
+          <ul>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/What_is_JavaScript">
+                Mozilla Developer Network JavaScript tutorial
+              </a>
+            </li>
+            <li>
+              <a href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html">
+                TypeScript tutorial
+              </a>
+            </li>
+          </ul>
+
+          <div class="font-bold">Project templates</div>
+          <ul>
+            <li><a href="https://github.com/ludev-nl/vue-python-template">Vue-frontend + Python/Flask-backend</a></li>
+            <li><a href="https://github.com/ludev-nl/nextjs-template">React-frontend + TypeScript-backend</a></li>
+            <li><a href="https://github.com/ludev-nl/sveltekit-template">Svelte-frontend + TypeScript-backend</a></li>
+          </ul>
+
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      center: false,
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+    });
+
+    const codeComments = {
+      0: {
+        start: "Tags can contain text",
+        0: "Or other tags",
+        1: "Or a mix of text and tags",
+        2: "<a> stands for anchor tag, and represents a link to a different website/location",
+        3: "div is commonly used, it is a blank slate without meaning. Overuse is bad for accessibility!",
+      },
+
+      1: {
+        start:
+          "href is a text attribute indicating where the link will take you.",
+        0: "disabled is a boolean attribute (it's either present or it's not) that disables the button.",
+        1: "type indicates the type of input. Spellchecking has been disabled. Notice how the <input> tag is self-closing.",
+      },
+
+      2: {
+        0: "CSS styles go between style tags. Or in their own file which you include in your HTML.",
+        1: "These are selectors. Select ALL input and ALL button elements.",
+        2: "Then follows a set of CSS rules to be applied to the selected elements.",
+        3: "Then follows a set of CSS rules to be applied to the selected elements.",
+        4: "The end result looks like this",
+        5: "The end result looks like this",
+      },
+
+      3: {
+        start: "Select all elements of a certain HTML tag.",
+        0: "Select all elements with a specific class.",
+        1: "Select all elements with this combination of classes.",
+        2: "Select an element with this id. An id is unique on the page.",
+        3: "Select all elements with this attribute value.",
+        4: "Comma acts as an OR between selectors. :focus selects the focused element. :not inverts a selector.",
+        5: "Select all elements INSIDE a specific element. So all <li> inside an <ul>.",
+      },
+      4: {
+        start: "Declare a function-scoped variable.",
+        0: "Declare a block-scoped variable (the way you're familiar with).",
+        1: "Declare a block-scoped variable that cannot be reassigned.",
+        2: "Advice: Only use `let` and `const`.",
+        3: "Note: `const` does not prevent mutation. This is valid.",
+        4: "Reassignment like this is NOT valid.",
+      },
+      5: {
+        start: "There are 5 important primitive types",
+        0: "Number. Numbers are always floating point. There are no integers.",
+        1: "String.",
+        2: "Boolean.",
+        3: "Null means no value (yet), intentionally.",
+        4: "Undefined means no value, unintenionally.",
+        5: "Primitives are pass-by-value (they get copied to a function).",
+      },
+      6: {
+        start: "There is only one non-primitive: Objects",
+        0: "Key-value pairs, like a dictionary in Python. Assign/read in two ways.",
+        1: "Arrays exist, but they're really just Objects with number keys.",
+        2: "If a key doesn't exist, it returns undefined.",
+        3: "Objects are pass-by-reference !",
+        4: "Every value in JavaScript is ",
+      },
+      7: {
+        start: "Loops are what you're used to.",
+        0: "Log something to console 10 times",
+        1: "Loop infinitely",
+        2: "With a handy for-of loop that gets you the item directly.",
+        3: "N.B. Console is dev console (F12) in browser, and your terminal in NodeJS.",
+      },
+      8: {
+        start: "Declare a normal, named function",
+        0: "Declare an arrow-function, which can be anonymous.",
+        1: "Example of anonymous function. Squares the array using the standard `map` method on arrays.",
+        2: "Note that you don't need an explicit `return` if your arrow function is a single expression.",
+        3: "You can call a function with any number of arguments.",
+        4: "If arguments are missing, they will be `undefined` in the function.",
+      },
+      9: {
+        start: "Classes are possible, and what you're used to.",
+        0: "There is no 'real' public or private. Need to call `super` in derived classes' constructor.",
+        1: "Instantiate Objects from class with the `new` keyword.",
+      },
+      10: {
+        1: "`document` is a globally available variable, holding methods to manipulate the DOM.",
+        2: "Use the `querySelector` method on it, which accepts CSS selectors to query nodes in the HTML tree",
+        3: "Grab its list of applied CSS classes",
+        4: "Add the 'text-red' class to it (presumably to make the text red)",
+      },
+      11: {
+        start: "Query the button element, as before",
+        0: "",
+        1: "Attach a function to be run on certain events. We listen for `click` (first argument)",
+        2: "The second argument, the function, simply logs something to console.",
+        3: "Arrow function syntax () => { ... } is really convenient here.",
+      },
+      12: {
+        1: "Scroll to a certain position on the page",
+        3: "localStorage: Persist some data on the user's device",
+        4: "localStorage: Retrieve some persisted data from the user's device.",
+        5: "Fetch data from a server via an HTTP request",
+      },
+      13: {
+        start:
+          "Destructuring syntax: Grab `count` from the first Object argument.",
+        0: "What count will we display? An ellipsis if we don't have a count yet. Else, the number given by `count`.",
+        1: "Return some HTML (React specific!). Names between { } are interpolated variables.",
+      },
+      15: {
+        start: "Use try/catch for handling errors",
+        0: "Let's `throw` an error.",
+        1: "The error is handled in the catch block",
+      },
+    };
+
+    const staticWebsiteStart = 29;
+    const dynamicWebsiteSsrStart = 31;
+    const dynamicWebsiteCsrStart = 34;
+
+    const sections = document.querySelectorAll("section");
+    function setCssSelectorExample(state) {
+      if (state.indexh === 10) {
+
+        const els = document.querySelectorAll(".css-selector-example");
+        const idx = state.indexf + 1;
+        for (const [i, el] of els.entries()) {
+          if (i === idx) el.classList.add("current");
+          else el.classList.remove("current");
+        }
+      }
+    }
+
+    function setStaticWebsiteExample({ indexh, indexf }) {
+      if (indexh !== staticWebsiteStart) return;
+      console.log({ indexh, indexf });
+
+      const indexReq = document.getElementById("http-index-req");
+      const reqArrow = document.getElementById("http-arrow");
+      const indexRes = document.getElementById("http-index-res");
+      const reqResText = document.getElementById("request-response");
+      const arrowSvg = document.getElementById("http-arrow-svg");
+      const serverText = document.getElementById("server-text");
+
+      if (indexf === 0 || indexf === 1) {
+        indexReq.classList.add("hidden");
+        reqArrow.classList.add("invisible");
+      } else if (indexf === 2) {
+        indexReq.classList.remove("hidden");
+        reqArrow.classList.remove("invisible");
+        indexReq.style = "";
+        serverText.innerText = "";
+      } else if (indexf === 3) {
+        indexReq.classList.remove("hidden");
+        reqArrow.classList.remove("invisible");
+        indexReq.style = "transform: translateX(42rem)";
+        indexRes.classList.add("hidden");
+        reqResText.innerText = "HTTP Request";
+        serverText.innerText = "Finds premade index.html file...";
+        arrowSvg.classList.remove("rotate-180");
+      } else if (indexf === 4) {
+        indexReq.classList.add("hidden");
+        indexRes.classList.remove("hidden");
+        reqResText.innerText = "HTTP Response";
+        arrowSvg.classList.add("rotate-180");
+        serverText.innerText = "Success: Status code 200";
+        indexRes.style = "transform: translateX(42rem)";
+      } else if (indexf === 5) {
+        indexRes.classList.remove("hidden");
+        indexRes.style = "";
+        reqResText.innerText = "HTTP Response";
+        arrowSvg.classList.add("rotate-180");
+        serverText.innerText = "Sends it back";
+      }
+    }
+
+    function setDynamicWebsiteExample({ indexh, indexf }) {
+      if (indexh !== dynamicWebsiteSsrStart) return;
+
+      const accountReq = document.getElementById("http-account-req");
+      const reqArrow2 = document.getElementById("http-arrow2");
+      const accountRes = document.getElementById("http-account-res");
+      const reqResText2 = document.getElementById("request-response2");
+      const arrowSvg2 = document.getElementById("http-arrow-svg2");
+      const serverText2 = document.getElementById("server-text2");
+
+      if (indexf === 0 || indexf === 1) {
+        accountReq.classList.add("hidden");
+        reqArrow2.classList.add("invisible");
+      } else if (indexf === 2) {
+        accountReq.classList.remove("hidden");
+        reqArrow2.classList.remove("invisible");
+        accountReq.style = "";
+        serverText2.innerText = "";
+      } else if (indexf === 3) {
+        accountReq.classList.remove("hidden");
+        reqArrow2.classList.remove("invisible");
+        accountReq.style = "transform: translateX(38rem)";
+        accountRes.classList.add("hidden");
+        reqResText2.innerText = "HTTP Request";
+        serverText2.innerText = "Checks if credentials are ok...";
+        arrowSvg2.classList.remove("rotate-180");
+      } else if (indexf === 4) {
+        serverText2.innerText =
+          "Finds account-related data in database or cache";
+      } else if (indexf === 5) {
+        arrowSvg2.classList.remove("rotate-180");
+        serverText2.innerText =
+          "Fills in a template for account.html with your data";
+        reqResText2.innerText = "HTTP Request";
+        accountReq.classList.remove("hidden");
+        accountRes.classList.add("hidden");
+      } else if (indexf === 6) {
+        arrowSvg2.classList.add("rotate-180");
+        accountReq.classList.add("hidden");
+        serverText2.innerText = "Sends filled out account.html back";
+        accountRes.classList.remove("hidden");
+        accountRes.style = "transform: translateX(38rem)";
+      } else if (indexf === 7) {
+        accountRes.style = "";
+      }
+
+      console.log({ indexh, indexf });
+    }
+
+    function setDynamicWebsiteExample2({ indexh, indexf }) {
+      if (indexh !== dynamicWebsiteCsrStart) return;
+
+      const account2Req = document.getElementById("http-account2-req");
+      const reqArrow3 = document.getElementById("http-arrow3");
+      const account2Res = document.getElementById("http-account2-res");
+      const reqResText3 = document.getElementById("request-response3");
+      const arrowSvg3 = document.getElementById("http-arrow-svg3");
+      const serverText3 = document.getElementById("server-text3");
+      const accountPage = document.getElementById("account-page");
+      const accountHtmlLoad = document.getElementById("account-html-load");
+      const accountHtmlData = document.getElementById("account-html-data");
+      const httpArrow4 = document.getElementById("http-arrow4");
+      const jsonExample4 = document.getElementById("json-example-4");
+      const arrowSvg4 = document.getElementById("http-arrow-svg4");
+
+      if (indexf === 0 || indexf === 1) {
+        account2Req.classList.add("hidden");
+        reqArrow3.classList.add("invisible");
+      } else if (indexf === 2) {
+        account2Req.classList.remove("hidden");
+        reqArrow3.classList.remove("invisible");
+        account2Req.style = "";
+        serverText3.innerText = "";
+      } else if (indexf === 3) {
+        account2Req.classList.remove("hidden");
+        reqArrow3.classList.remove("invisible");
+        account2Req.style = "transform: translateX(38rem)";
+        account2Res.classList.add("hidden");
+        reqResText3.innerText = "HTTP Request";
+        serverText3.innerText =
+          "Finds account.html (a skeleton page, no actual data)";
+        arrowSvg3.classList.remove("rotate-180");
+      } else if (indexf === 4) {
+        arrowSvg3.classList.add("rotate-180");
+        account2Req.classList.add("hidden");
+        reqResText3.innerText = "HTTP Response";
+        serverText3.innerText = "Sends 'empty' account.html back";
+        account2Res.classList.remove("hidden");
+        account2Res.style = "transform: translateX(38rem)";
+      } else if (indexf === 5) {
+        account2Res.style = "display: hidden;";
+        accountPage.classList.add("invisible");
+        serverText3.innerText = "Sends 'empty' account.html back";
+        account2Res.classList.remove("hidden");
+        reqArrow3.classList.remove("invisible");
+        accountHtmlLoad.classList.add("hidden");
+        arrowSvg3.classList.remove("invisible");
+      } else if (indexf === 6) {
+        accountPage.classList.remove("invisible");
+        serverText3.innerText = "";
+        account2Res.classList.add("hidden");
+
+        account2Req.classList.add("hidden");
+        accountHtmlData.classList.add("hidden");
+        accountHtmlLoad.classList.remove("hidden");
+        arrowSvg3.classList.add("invisible");
+        reqResText3.innerHTML = "User sees skeleton page<br/>with shimmers";
+
+        httpArrow4.classList.add("invisible");
+      } else if (indexf === 7) {
+        reqResText3.innerHTML = "Fetch data via JavaScript,<br/> fill it in.";
+        httpArrow4.classList.remove("invisible");
+        httpArrow4.style = "left: -5rem; bottom: -12rem";
+        arrowSvg4.classList.remove("rotate-180");
+      } else if (indexf === 8) {
+        httpArrow4.style =
+          "left: -5rem; bottom: -12rem; transform: translateX(23rem)";
+        arrowSvg3.classList.add("rotate-180");
+        jsonExample4.classList.add("invisible");
+      } else if (indexf === 9) {
+        jsonExample4.classList.remove("invisible");
+        httpArrow4.style =
+          "left: -5rem; bottom: -12rem; transform: translateX(23rem)";
+        reqResText3.innerHTML =
+          "Server verifies credentials,<br/> gets data, sends it back";
+        arrowSvg4.classList.add("rotate-180");
+        accountHtmlLoad.classList.remove("hidden");
+      } else if (indexf === 10) {
+        jsonExample4.classList.remove("invisible");
+        arrowSvg3.classList.add("rotate-180");
+        httpArrow4.style = "left: -5rem; bottom: -12rem;";
+        reqResText3.innerHTML =
+          "Request completed,<br/> page filled in via JS";
+        accountHtmlLoad.classList.remove("hidden");
+        accountHtmlData.classList.add("hidden");
+      } else if (indexf === 11) {
+        accountHtmlLoad.classList.add("hidden");
+        accountHtmlData.classList.remove("hidden");
+      }
+    }
+
+    function setCodeComment(page, state) {
+      const comment = sections[page + 1].querySelector(".code-comment");
+      if (!comment) return;
+      let commentIdx = null;
+      for (const cls of comment.classList.values()) {
+        let [_, number] = cls.split("code-comment");
+        if (number) {
+          commentIdx = Number(number);
+          break;
+        }
+      }
+      if (commentIdx != null && codeComments[commentIdx])
+        comment.textContent = codeComments[commentIdx][state];
+    }
+
+    function handleFragmentShown() {
+      const state = Reveal.getState();
+      const index = state.indexf === -1 ? "start" : state.indexf;
+      setCodeComment(state.indexh - 1, index);
+      setCssSelectorExample(state);
+      setStaticWebsiteExample(state);
+      setDynamicWebsiteExample(state);
+      setDynamicWebsiteExample2(state);
+    }
+
+    Reveal.on("fragmentshown", handleFragmentShown);
+
+    Reveal.on("fragmenthidden", handleFragmentShown);
+
+    Reveal.on("slidechanged", handleFragmentShown);
+  </script>
+</body>
+
+</html>
